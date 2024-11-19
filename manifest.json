@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lemmy Language memorizer",
-  "version": "1.0",
+  "version": "1.1",
   "browser_specific_settings": {
     "gecko": {
       "id": "helloyanis@lemmy-lang-remember"
@@ -1220,10 +1220,5 @@
         "*://*.lemmy.gwa.app/*"
       ],
       "js": ["script.js"]
-    }],
-  "background": {
-      "scripts": [
-        "background.js"
-      ]
-    }
+    }]
 }

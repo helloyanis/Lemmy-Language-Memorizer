@@ -4,38 +4,36 @@
   if(!languageId) {
     languageId = 0;
   }
-  // Define a function to set the language select value
-  function setLanguageSelect() {
-    const selectElement = document.querySelector(".language-select select");
-    if (selectElement) {
-      selectElement.value = languageId;
-      selectElement.dispatchEvent(new Event("change"));
-    }
-  }
 
-  // Run the function to set the select value if on the correct URL
-  setLanguageSelect();
-
-  // Observe changes to the URL and the language select element
-  let currentURL = location.pathname;
-
-  // Observe changes to the URL in a seamless navigation setup
-  const observer = new MutationObserver(() => {
-    if (location.href !== currentURL) {
-      currentURL = location.href;
-      if (currentURL==="/create_post") {
-        setLanguageSelect();
+  const observer = new MutationObserver((mutationsList, observer) => {
+    // Look for the language select element
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const selectElementList = node.querySelectorAll('[id*="language-select"]');
+            if (selectElementList.length > 0) {
+              //Language select was found.
+              const selectElement=selectElementList[0];
+              //Set the value of the select to the stored language
+              selectElement.value = languageId;
+              //Trigger the change event to update the language
+              selectElement.dispatchEvent(new Event("change"));
+              //Add an event listener to the select to save the language preference
+              selectElement.addEventListener("change", (event) => {
+                //User changed their language from the select
+                const newLanguage = event.target.value;
+                browser.storage.local.set({ languageId: newLanguage });
+              });
+              break;
+            }
+          }
+        }
       }
     }
   });
 
-  // Start observing changes in the body to catch seamless navigation
+  // Start observing the body for changes
   observer.observe(document.body, { childList: true, subtree: true });
-
-  // Observe changes to the select element for manual updates
-  document.querySelector(".language-select select")?.addEventListener("change", (event) => {
-    const newLanguage = event.target.value;
-    browser.storage.local.set({ languageId: newLanguage });
-  });
-  console.log("Script loaded with language "+languageId);
+  
 })();
