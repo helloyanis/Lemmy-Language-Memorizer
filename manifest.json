@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lemmy Language memorizer",
-  "version": "1.1",
+  "version": "1.2",
   "browser_specific_settings": {
     "gecko": {
       "id": "helloyanis@lemmy-lang-remember"
@@ -10,8 +10,7 @@
   "description": "Remembers your last used language in a lemmy post so you don't have to select it again!",
   "permissions": [
     "scripting",
-    "storage",
-    "webNavigation"
+    "storage"
   ],
   "host_permissions": [
     "*://*.lemmy.fait.ch/*",
