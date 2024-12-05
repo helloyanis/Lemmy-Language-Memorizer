@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lemmy Language memorizer",
-  "version": "1.2",
+  "version": "1.3",
   "browser_specific_settings": {
     "gecko": {
       "id": "helloyanis@lemmy-lang-remember"
@@ -612,7 +612,8 @@
     "*://*.lemmy.hogru.ch/*",
     "*://*.lemmy.remorse.us/*",
     "*://*.lemmy.beagle.quest/*",
-    "*://*.lemmy.gwa.app/*"
+    "*://*.lemmy.gwa.app/*",
+    "*://*.possumpat.io/*"
   ],
   "content_scripts": [
     {
@@ -1216,7 +1217,8 @@
         "*://*.lemmy.hogru.ch/*",
         "*://*.lemmy.remorse.us/*",
         "*://*.lemmy.beagle.quest/*",
-        "*://*.lemmy.gwa.app/*"
+        "*://*.lemmy.gwa.app/*",
+        "*://*.possumpat.io/*"
       ],
       "js": ["script.js"]
     }]
